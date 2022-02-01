@@ -1,5 +1,6 @@
-package com.studentrest.entities;
+package com.studentrest.entities.group;
 
+import com.studentrest.entities.student.Student;
 import lombok.Data;
 
 import java.util.LinkedList;
