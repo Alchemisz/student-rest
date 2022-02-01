@@ -29,4 +29,9 @@ public class GroupRepositoryImpl implements GroupRepository {
     public Optional<Group> findByGroupName(String groupName) {
         return groups.stream().filter(e -> e.getName().equals(groupName)).findFirst();
     }
+
+    @Override
+    public List<Group> getAll() {
+        return groups;
+    }
 }

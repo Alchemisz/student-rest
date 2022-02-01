@@ -1,9 +1,11 @@
 package com.studentrest.entities.student;
 
 import com.studentrest.entities.Grade;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
@@ -13,7 +15,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void add(Student student) {
+    public void addStudent(Student student) {
         studentRepository.add(student);
     }
 

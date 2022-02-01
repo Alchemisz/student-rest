@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface StudentService {
 
-    void add(Student group);
+    void addStudent(Student group);
     void remove(Student group);
     Map<String, Grade> getGrades(Long studentId);
 
