@@ -2,6 +2,7 @@ package com.studentrest.controller.rest;
 
 import com.studentrest.entities.group.Group;
 import com.studentrest.entities.group.GroupService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class GroupController {
         groupService.addGroup(group);
     }
 
+    @ApiOperation(value = "Return list of groups", notes = "Simple note")
     @GetMapping
     public List<Group> getGroups(){
         return groupService.getGroups();
