@@ -1,10 +1,11 @@
 package com.studentrest;
 
 import com.studentrest.entities.Grade;
-import com.studentrest.entities.group.Group;
+import com.studentrest.entities.group.StudentsGroup;
 import com.studentrest.entities.group.GroupService;
 import com.studentrest.entities.student.Student;
 import com.studentrest.entities.student.StudentService;
+import com.studentrest.entities.subjectGrade.SubjectGrade;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,23 +18,23 @@ public class InitialMemoryRepositories {
         this.studentService = studentService;
         this.groupService = groupService;
 
-        Group group1 = new Group("3ID13A");
-        Group group2 = new Group("3ID12B");
+        StudentsGroup studentsGroup1 = new StudentsGroup("3ID13A");
+        StudentsGroup studentsGroup2 = new StudentsGroup("3ID12B");
+        StudentsGroup studentsGroup3 = new StudentsGroup("1ID15B");
 
-        Student student1 = new Student(1L, "Adrian", "Rubak", 22);
-        student1.addGrade("Mobile Applications", Grade.FIVE);
-        student1.addGrade("Databases", Grade.FOUR_PLUS);
-        studentService.addStudent(student1);
+        Student student1 = new Student("Adrian", "Rubak", 22);
+        student1.addGrade(new SubjectGrade("Mobile Applications", Grade.FIVE));
+        student1.addGrade(new SubjectGrade("Databases", Grade.FOUR_PLUS));
 
-        Student student2 = new Student(2L, "Jan", "Kowalski", 21);
-        student2.addGrade("Programing in C++", Grade.THREE);
-        student2.addGrade("Programing in JAVA", Grade.THREE_PLUS);
-        studentService.addStudent(student2);
+        Student student2 = new Student("Jan", "Kowalski", 21);
+        student2.addGrade(new SubjectGrade("Programing in C++", Grade.THREE));
+        student2.addGrade(new SubjectGrade("Programing in JAVA", Grade.THREE_PLUS));
 
-        group1.addStudent(student1);
-        group1.addStudent(student2);
-        groupService.addGroup(group1);
-        groupService.addGroup(group2);
+        studentsGroup1.addStudent(student1);
+        studentsGroup1.addStudent(student2);
+        groupService.addGroup(studentsGroup1);
+        groupService.addGroup(studentsGroup2);
+        groupService.addGroup(studentsGroup3);
 
     }
 }

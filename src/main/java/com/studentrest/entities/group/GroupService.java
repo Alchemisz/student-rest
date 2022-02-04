@@ -1,17 +1,15 @@
 package com.studentrest.entities.group;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 
 public interface GroupService {
 
-    void addGroup(Group group);
-    void removeGroup(Group group);
-    Optional<Group> getGroup(String groupName);
+    void addGroup(StudentsGroup studentsGroup);
+    void removeGroup(StudentsGroup studentsGroup);
+    Optional<StudentsGroup> getGroup(String groupName);
 
-    List<Group> getGroups();
+    List<StudentsGroup> getGroups();
 
 }

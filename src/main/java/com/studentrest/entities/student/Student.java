@@ -1,23 +1,40 @@
 package com.studentrest.entities.student;
 
 import com.studentrest.entities.Grade;
+import com.studentrest.entities.subjectGrade.SubjectGrade;
 import lombok.Data;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Data
+@Entity
 public class Student {
 
-    private final Long id;
-    private final String firstName;
-    private final String lastName;
-    private final Integer age;
-    private Map<String, Grade> grades;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private Integer age;
 
-    public void addGrade(String subject, Grade grade){
+    @OneToMany(targetEntity = SubjectGrade.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    private List<SubjectGrade> grades;
+
+    public Student() {
+    }
+
+    public Student(String firstName, String lastName, Integer age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    public void addGrade(SubjectGrade subjectGrade){
         if (grades == null)
-            grades = new HashMap<>();
-        grades.put(subject, grade);
+            grades = new LinkedList<>();
+        grades.add(subjectGrade);
     }
 }

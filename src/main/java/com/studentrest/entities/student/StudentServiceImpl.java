@@ -1,31 +1,42 @@
 package com.studentrest.entities.student;
 
 import com.studentrest.entities.Grade;
+import com.studentrest.entities.subjectGrade.SubjectGrade;
+import com.studentrest.entities.subjectGrade.SubjectGradeJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository studentRepository;
+    private final StudentJpaRepository studentJpaRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentServiceImpl(StudentJpaRepository studentJpaRepository) {
+        this.studentJpaRepository = studentJpaRepository;
     }
 
     @Override
     public void addStudent(Student student) {
-        studentRepository.add(student);
+        studentJpaRepository.save(student);
     }
 
     @Override
     public void remove(Student student) {
-        studentRepository.remove(student);
+        studentJpaRepository.delete(student);
     }
 
     @Override
-    public Map<String, Grade> getGrades(Long studentId) {
-        return studentRepository.findGradesById(studentId);
+    public Map<String, Float> getGrades(Long studentId) {
+
+        Optional<Student> student = studentJpaRepository.findById(studentId);
+        if (!student.isPresent()) return null;
+
+        return studentJpaRepository.findById(studentId)
+                .get().getGrades()
+                .stream()
+                .collect(Collectors.toMap(SubjectGrade::getSubjectName, SubjectGrade::getGrade));
     }
 }

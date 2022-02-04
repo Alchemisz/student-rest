@@ -8,29 +8,29 @@ import java.util.Optional;
 @Service
 public class GroupServiceImpl implements GroupService {
 
-    private final GroupRepository groupRepository;
+    private final GroupJpaRepository groupJpaRepository;
 
-    public GroupServiceImpl(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
+    public GroupServiceImpl(GroupJpaRepository groupJpaRepository) {
+        this.groupJpaRepository = groupJpaRepository;
     }
 
     @Override
-    public void addGroup(Group group) {
-        groupRepository.add(group);
+    public void addGroup(StudentsGroup studentsGroup) {
+        groupJpaRepository.save(studentsGroup);
     }
 
     @Override
-    public void removeGroup(Group group) {
-        groupRepository.remove(group);
+    public void removeGroup(StudentsGroup studentsGroup) {
+        groupJpaRepository.delete(studentsGroup);
     }
 
     @Override
-    public Optional<Group> getGroup(String groupName) {
-        return groupRepository.findByGroupName(groupName);
+    public Optional<StudentsGroup> getGroup(String groupName) {
+        return groupJpaRepository.findById(groupName);
     }
 
     @Override
-    public List<Group> getGroups() {
-        return groupRepository.getAll();
+    public List<StudentsGroup> getGroups() {
+        return groupJpaRepository.findAll();
     }
 }
