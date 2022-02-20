@@ -1,8 +1,6 @@
 package com.studentrest.entities.student;
 
-import com.studentrest.entities.Grade;
 import com.studentrest.entities.subjectGrade.SubjectGrade;
-import com.studentrest.entities.subjectGrade.SubjectGradeJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -12,9 +10,9 @@ import java.util.stream.Collectors;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentJpaRepository studentJpaRepository;
+    private final StudentRepository studentJpaRepository;
 
-    public StudentServiceImpl(StudentJpaRepository studentJpaRepository) {
+    public StudentServiceImpl(StudentRepository studentJpaRepository) {
         this.studentJpaRepository = studentJpaRepository;
     }
 

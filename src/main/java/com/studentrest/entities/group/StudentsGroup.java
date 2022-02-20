@@ -19,7 +19,7 @@ public class StudentsGroup {
     private String name;
 
     @OneToMany(targetEntity = Student.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_fk", referencedColumnName = "name")
+    @JoinColumn(name = "group_id", referencedColumnName = "name")
     private List<Student> students;
 
     public StudentsGroup() {
